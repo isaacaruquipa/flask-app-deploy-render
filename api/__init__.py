@@ -38,9 +38,38 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+
+
+from flask import render_template
+
+
 @app.route('/')
 def hello():
-    return 'My First API !!'
+    titulo = "Hola Mundo"
+    mensaje = "Esto es una prueba"
+
+
+    lista_personas = [
+        {
+            "nombre": "Juan",
+            "apellido": "Perez",
+            "edad": 25
+        }
+        ,
+        {
+            "nombre": "Maria",
+            "apellido": "Gonzalez",
+            "edad": 30
+        }
+    ]
+    
+    data = {
+        "titulo": titulo,
+        "mensaje": mensaje,
+        "lista_personas": lista_personas
+    }
+
+    return render_template('index.html', **data)
 
 """"
 @app.route('/api/v1/posts', methods=['GET'])
