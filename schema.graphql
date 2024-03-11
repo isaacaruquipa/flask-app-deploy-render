@@ -1,0 +1,40 @@
+schema{
+	query:Query
+	mutation:Mutation
+}
+
+
+type Post{
+	id:Int
+	title:String
+	description:String
+	created_at: String
+}	
+
+
+type PostResult {
+	success:Boolean!
+	errors: [String]
+	post:Post
+
+}
+
+type PostsResult{
+	success:Boolean!
+	errors: [String]
+	posts:[Post]
+}
+
+type Query{
+	listPosts:PostsResult!
+	getPost(id:Int!):PostResult
+}
+
+type Mutation{
+	createPost(title:String! description:String!, created_at:String):PostResult
+	updatePost(id:Int! title:String! description:String! created_at:String):PostResult
+	deletePost(id:Int!):PostResult
+}
+
+
+
